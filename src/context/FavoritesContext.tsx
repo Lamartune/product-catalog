@@ -3,8 +3,8 @@ import { Product } from "../types/Product";
 
 interface FavoritesContextType {
   favorites: Product[];
-  addToFavorites: (product: Product) => void;
-  removeFromFavorites: (id: number) => void;
+  toggleFavorite: (product: Product) => void;
+  isFavorite: (id: number) => boolean;
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
@@ -16,19 +16,23 @@ export const FavoritesProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [favorites, setFavorites] = useState<Product[]>([]);
 
-  const addToFavorites = (product: Product) => {
-    setFavorites((prevFavorites) => [...prevFavorites, product]);
+  const toggleFavorite = (product: Product) => {
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.some((fav) => fav.id === product.id)) {
+        return prevFavorites.filter((fav) => fav.id !== product.id);
+      } else {
+        return [...prevFavorites, product];
+      }
+    });
   };
 
-  const removeFromFavorites = (id: number) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.filter((product) => product.id !== id)
-    );
+  const isFavorite = (id: number) => {
+    return favorites.some((product) => product.id === id);
   };
 
   return (
     <FavoritesContext.Provider
-      value={{ favorites, addToFavorites, removeFromFavorites }}
+      value={{ favorites, toggleFavorite, isFavorite }}
     >
       {children}
     </FavoritesContext.Provider>

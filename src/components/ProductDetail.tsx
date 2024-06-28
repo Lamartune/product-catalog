@@ -6,19 +6,22 @@ import Comments from "./Comments";
 const products: Product[] = [
   {
     id: 1,
-    image: "image1.jpg",
-    title: "Product 1",
-    description: "Description 1"
+    image: "../../src/assets/ProductImages/ROCKSTAR.jpg",
+    brand: "ICONIC",
+    title: "ROCKSTAR JEAN",
+    description: "Straight, Normal Bel"
   },
   {
     id: 2,
-    image: "image2.jpg",
+    image: "../../src/assets/ProductImages/COTTON.jpg",
+    brand: "ICONIC",
     title: "Product 2",
     description: "Description 2"
   },
   {
     id: 3,
-    image: "image3.jpg",
+    image: "../../src/assets/ProductImages/TOMANDJERRY.jpg",
+    brand: "ICONIC",
     title: "Product 3",
     description: "Description 3"
   }

@@ -1,31 +1,32 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Product } from "../types/Product";
-import { useFavorites } from "../context/FavoritesContext";
+import ProductCard from "./ProductCard";
 
 const products: Product[] = [
   {
     id: 1,
-    image: "image1.jpg",
-    title: "Product 1",
-    description: "Description 1"
+    image: "../../src/assets/ProductImages/ROCKSTAR.jpg",
+    brand: "ICONIC",
+    title: "ROCKSTAR JEAN",
+    description: "Straight, Normal Bel"
   },
   {
     id: 2,
-    image: "image2.jpg",
+    image: "../../src/assets/ProductImages/COTTON.jpg",
+    brand: "ICONIC",
     title: "Product 2",
     description: "Description 2"
   },
   {
     id: 3,
-    image: "image3.jpg",
+    image: "../../src/assets/ProductImages/TOMANDJERRY.jpg",
+    brand: "ICONIC",
     title: "Product 3",
     description: "Description 3"
   }
 ];
 
 const ProductList: React.FC = () => {
-  const { addToFavorites } = useFavorites();
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredProducts = products.filter((product) =>
@@ -41,20 +42,14 @@ const ProductList: React.FC = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <ul>
+
+      <div className="flex flex-wrap gap-4 mb-24">
         {filteredProducts.map((product) => (
-          <li key={product.id}>
-            <Link to={`/product/${product.id}`}>
-              <img src={product.image} alt={product.title} />
-              <h2>{product.title}</h2>
-              <p>{product.description}</p>
-            </Link>
-            <button onClick={() => addToFavorites(product)}>
-              Add to Favorites
-            </button>
-          </li>
+          <div key={product.id} className="w-full max-w-[340px] max-h-[482px]">
+            <ProductCard product={product} />
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

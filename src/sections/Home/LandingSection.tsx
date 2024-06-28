@@ -4,10 +4,22 @@ import FavoritesList from "../../components/FavoritesList";
 
 const LandingSection: React.FC = () => {
   return (
-    <div>
-      <ProductList />
-      <FavoritesList />
-    </div>
+    <>
+      <div className=" block ">
+        <table>
+          <tbody>
+            <tr className="">
+              <td>
+                <ProductList />
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+
+        <FavoritesList />
+      </div>
+    </>
   );
 };
 
