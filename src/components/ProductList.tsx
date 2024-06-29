@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Product } from "../types/Product";
 import ProductCard from "./ProductCard";
 
@@ -23,12 +23,21 @@ const products: Product[] = [
     brand: "ICONIC",
     title: "Product 3",
     description: "Description 3"
+  },
+  {
+    id: 4,
+    image: "../../src/assets/ProductImages/TOMANDJERRY.jpg",
+    brand: "ICONIC",
+    title: "Product 4",
+    description: "Description 4"
   }
 ];
 
-const ProductList: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+interface ProductListProps {
+  searchTerm: string;
+}
 
+const ProductList: React.FC<ProductListProps> = ({ searchTerm }) => {
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -36,16 +45,9 @@ const ProductList: React.FC = () => {
   return (
     <div>
       <h1>Product List</h1>
-      <input
-        type="text"
-        placeholder="Search products..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-
-      <div className="flex flex-wrap gap-4 mb-24">
+      <div className="flex gap-4 mb-24">
         {filteredProducts.map((product) => (
-          <div key={product.id} className="w-full max-w-[340px] max-h-[482px]">
+          <div key={product.id} className="w-full max-w-[340px] max-h-[610px]">
             <ProductCard product={product} />
           </div>
         ))}

@@ -1,10 +1,17 @@
+import React from "react";
 import LandingSection from "../sections/Home/LandingSection";
 
-const HomePage = () => {
+interface HomePageProps {
+  searchTerm: string;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ searchTerm }) => {
   return (
-    <div>
-      <LandingSection />
-    </div>
+    <>
+      <section className="my-8">
+        <LandingSection searchTerm={searchTerm} />
+      </section>
+    </>
   );
 };
 

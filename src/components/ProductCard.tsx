@@ -14,7 +14,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { toggleFavorite, isFavorite } = useFavorites();
 
   return (
-    <div className="w-full max-w-[340px] max-h-[482px]">
+    <div className="w-full max-w-[340px] max-h-[610px]">
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <div className="relative">
           <Link to={`/product/${product.id}`}>
