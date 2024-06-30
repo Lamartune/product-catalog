@@ -30,6 +30,13 @@ const products: Product[] = [
     brand: "ICONIC",
     title: "Product 4",
     description: "Description 4"
+  },
+  {
+    id: 5,
+    image: "../../src/assets/ProductImages/COTTON.jpg",
+    brand: "ICONIC",
+    title: "Product 5",
+    description: "Description 5"
   }
 ];
 
@@ -44,8 +51,8 @@ const ProductList: React.FC<ProductListProps> = ({ searchTerm }) => {
 
   return (
     <div>
-      <h1>Product List</h1>
-      <div className="flex gap-4 mb-24">
+      <h1 className="text-2xl font-bold mb-4">Product List</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-24">
         {filteredProducts.map((product) => (
           <div key={product.id} className="w-full max-w-[340px] max-h-[610px]">
             <ProductCard product={product} />

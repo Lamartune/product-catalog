@@ -5,23 +5,30 @@ import ProductDetail from "./components/ProductDetail";
 import Layout from "./layout/Layout";
 import { FavoritesProvider } from "./context/FavoritesContext";
 import { CommentsProvider } from "./context/CommentsContext";
+import FavoritesPage from "./pages/FavoritesPage";
+import { CartProvider } from "./context/CartContext";
+import CartPage from "./pages/CartPage";
 
 const App: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <FavoritesProvider>
-      <CommentsProvider>
-        <Router>
-          <Layout searchTerm={searchTerm} setSearchTerm={setSearchTerm}>
-            <Routes>
-              <Route path="/" element={<Home searchTerm={searchTerm} />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-            </Routes>
-          </Layout>
-        </Router>
-      </CommentsProvider>
-    </FavoritesProvider>
+    <CartProvider>
+      <FavoritesProvider>
+        <CommentsProvider>
+          <Router>
+            <Layout searchTerm={searchTerm} setSearchTerm={setSearchTerm}>
+              <Routes>
+                <Route path="/" element={<Home searchTerm={searchTerm} />} />
+                <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/favorites" element={<FavoritesPage />} />
+                <Route path="/cart" element={<CartPage />} />
+              </Routes>
+            </Layout>
+          </Router>
+        </CommentsProvider>
+      </FavoritesProvider>
+    </CartProvider>
   );
 };
 

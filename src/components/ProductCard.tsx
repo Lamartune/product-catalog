@@ -1,6 +1,7 @@
 import React from "react";
 import { Product } from "../types/Product";
 import { useFavorites } from "../context/FavoritesContext";
+import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
@@ -12,11 +13,12 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { toggleFavorite, isFavorite } = useFavorites();
+  const { toggleCart, isInCart } = useCart();
 
   return (
     <div className="w-full max-w-[340px] max-h-[610px]">
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
-        <div className="relative">
+        <div className="relative group">
           <Link to={`/product/${product.id}`}>
             <img
               src={product.image}
@@ -31,10 +33,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <FontAwesomeIcon
               icon={isFavorite(product.id) ? solidHeart : regularHeart}
               className={`text-2xl ${
-                isFavorite(product.id) ? "hover:scale-125 text-red-500" : "text-white hover:scale-125"
-              }`}
+                isFavorite(product.id) ? "text-red-500" : "text-white"
+              } hover:scale-125`}
             />
           </button>
+          <div className="absolute bottom-1 left-5 mb-2 mr-2 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button
+              onClick={() => toggleCart(product)}
+              className={
+                isInCart(product.id)
+                  ? "bg-red-500" + " px-10 py-2 rounded  text-white"
+                  : "bg-[#EE964B]" + " px-16 py-2 rounded  text-white"
+              }
+            >
+              {isInCart(product.id) ? "Remove from Cart" : "Add to Cart"}
+            </button>
+          </div>
         </div>
 
         <Link to={`/product/${product.id}`}>
