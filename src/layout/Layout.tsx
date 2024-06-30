@@ -95,7 +95,15 @@ const Layout: React.FC<LayoutProps> = ({
           </div> */}
           <h2>ICONIC</h2>
           <p>
-            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+            &copy; {new Date().getFullYear()}{" "}
+            <a
+              href="//linkedin.com/in/fatihtun"
+              className="hover:underline"
+              target="_blank"
+            >
+              FATIH TUN
+            </a>
+            . All rights reserved.
           </p>
         </div>
       </footer>

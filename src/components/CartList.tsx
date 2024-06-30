@@ -1,9 +1,9 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import ProductCard from "./ProductCard";
 
 const FavoritesList: React.FC = () => {
-  const { cart, toggleCart } = useCart();
+  const { cart } = useCart();
 
   return (
     <div className="block">
@@ -12,27 +12,16 @@ const FavoritesList: React.FC = () => {
         {cart.length === 0 ? (
           <p>Your cart is currently empty.</p>
         ) : (
-          <ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-24">
             {cart.map((product) => (
-              <li key={product.id} className="mb-4">
-                <Link to={`/product/${product.id}`} className="block mb-2">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-auto object-cover mb-2"
-                  />
-                  <h2 className="text-xl font-semibold">{product.title}</h2>
-                  <p className="text-gray-600">{product.description}</p>
-                </Link>
-                <button
-                  onClick={() => toggleCart(product)}
-                  className="px-4 py-2 bg-red-500 text-white rounded"
-                >
-                  Remove from Cart
-                </button>
-              </li>
+              <div
+                key={product.id}
+                className="w-full max-w-[340px] max-h-[610px]"
+              >
+                <ProductCard product={product} />
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </div>

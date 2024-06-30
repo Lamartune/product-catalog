@@ -16,7 +16,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { toggleCart, isInCart } = useCart();
 
   return (
-    <div className="w-full max-w-[340px] max-h-[610px]">
+    <div className="w-full max-w-[340px] max-h-[610px] hover:scale-105 transition-transform">
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <div className="relative group">
           <Link to={`/product/${product.id}`}>
@@ -37,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               } hover:scale-125`}
             />
           </button>
-          <div className="absolute bottom-1 left-5 mb-2 mr-2 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute bottom-1 left-5 mb-2 mr-2 flex space-x-2 hover:scale-105 opacity-0 group-hover:opacity-100 transition-opacity">
             <button
               onClick={() => toggleCart(product)}
               className={

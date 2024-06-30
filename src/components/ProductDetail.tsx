@@ -1,31 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../types/Product";
+import { products } from "../data/product";
 import Comments from "./Comments";
-
-const products: Product[] = [
-  {
-    id: 1,
-    image: "../../src/assets/ProductImages/ROCKSTAR.jpg",
-    brand: "ICONIC",
-    title: "ROCKSTAR JEAN",
-    description: "Straight, Normal Bel"
-  },
-  {
-    id: 2,
-    image: "../../src/assets/ProductImages/COTTON.jpg",
-    brand: "ICONIC",
-    title: "Product 2",
-    description: "Description 2"
-  },
-  {
-    id: 3,
-    image: "../../src/assets/ProductImages/TOMANDJERRY.jpg",
-    brand: "ICONIC",
-    title: "Product 3",
-    description: "Description 3"
-  }
-];
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -43,10 +19,20 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div>
-      <h1>{product.title}</h1>
-      <img src={product.image} alt={product.title} />
-      <p>{product.description}</p>
-      <Comments productId={product.id} />
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <img src={product.image} alt={product.title} />
+            </td>
+            <td>
+              <h1>{product.title}</h1>
+            </td>
+          </tr>
+        </tbody>
+        <p>{product.description}</p>
+        <Comments productId={product.id} />
+      </table>
     </div>
   );
 };
